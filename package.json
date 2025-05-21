@@ -1,7 +1,7 @@
 {
-  "name": "demo-app",
+  "name": "app01_macs",
   "version": "1.0.0",
-  "description": "Aplicacion MVC demo",
+  "description": "Aplicacion para compra de productos",
   "main": "index.js",
   "scripts": {
     "build": "webpack",
