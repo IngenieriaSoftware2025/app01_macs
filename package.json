@@ -1,7 +1,7 @@
 {
   "name": "app01_macs",
   "version": "1.0.0",
-  "description": "Aplicacion para compra de productos",
+  "description": "Aplicacion para compras de productos",
   "main": "index.js",
   "scripts": {
     "build": "webpack",

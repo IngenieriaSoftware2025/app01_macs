@@ -1,6 +1,6 @@
 {
     "name": "mindef/app01_macs",
-    "description": "Aplicacion para compra de productos",
+    "description": "Aplicacion para compras de productos",
     "type": "project",
     "config": {
         "platform-check": false
