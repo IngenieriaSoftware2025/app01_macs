@@ -12,11 +12,11 @@
                         <div class="row g-4 mb-3">
                             <div class="col-md-8">
                                 <label for="nombre" class="form-label">Nombre del Producto</label>
-                                <input type="text" class="form-control form-control-lg" id="nombre" name="nombre" placeholder="Ej: Papel higiénico" required>
+                                <input type="text" class="form-control form-control-lg" id="nombre" name="nombre" placeholder="productos" required>
                             </div>
                             <div class="col-md-4">
                                 <label for="cantidad" class="form-label">Cantidad</label>
-                                <input type="number" class="form-control form-control-lg" id="cantidad" name="cantidad" placeholder="Ej: 3" min="1" required>
+                                <input type="number" class="form-control form-control-lg" id="cantidad" name="cantidad" placeholder="cantidad" min="1" required>
                             </div>
                         </div>
                         <div class="row g-4 mb-4">
@@ -64,6 +64,23 @@
                     
                     <div class="table-responsive">
                         <table class="table table-striped table-hover table-bordered align-middle rounded-3 overflow-hidden" id="TableProductos">
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row justify-content-center mt-4" id="seccionComprados" style="display: none;">
+        <div class="col-lg-11">
+            <div class="card shadow-lg border-success rounded-4">
+                <div class="card-body">
+                    <div class="d-flex justify-content-between align-items-center mb-4">
+                        <h3 class="text-success">✅ Productos Comprados</h3>
+                    </div>
+                    
+                    <div class="table-responsive">
+                        <table class="table table-striped table-hover table-bordered align-middle rounded-3 overflow-hidden" id="TableProductosComprados">
                         </table>
                     </div>
                 </div>

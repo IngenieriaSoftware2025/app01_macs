@@ -15,8 +15,8 @@ CREATE TABLE productos (
     cantidad INT NOT NULL,
     categoria_id INT NOT NULL,
     prioridad_id INT NOT NULL,
-    comprado BOOLEAN DEFAULT 'f',
-    fecha_creacion DATETIME YEAR TO SECOND DEFAULT CURRENT YEAR TO SECOND,
+    comprado VARCHAR(20) DEFAULT 'pendiente de comprar', 
+    fecha_creacion DATETIME YEAR TO SECOND DEFAULT NULL, 
     FOREIGN KEY (categoria_id) REFERENCES categorias(id),
     FOREIGN KEY (prioridad_id) REFERENCES prioridades(id)
 );

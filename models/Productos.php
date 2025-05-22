@@ -29,7 +29,7 @@ class Productos extends ActiveRecord {
         $this->cantidad = $args['cantidad'] ?? 0;
         $this->categoria_id = $args['categoria_id'] ?? 0;
         $this->prioridad_id = $args['prioridad_id'] ?? 0;
-        $this->comprado = $args['comprado'] ?? 'f';
+        $this->comprado = $args['comprado'] ?? 'pendiente de comprar';
         $this->fecha_creacion = $args['fecha_creacion'] ?? null;
     }
 

@@ -79,7 +79,7 @@ class ProductoController extends ActiveRecord
                 'cantidad' => $_POST['cantidad'],
                 'categoria_id' => $_POST['categoria_id'],
                 'prioridad_id' => $_POST['prioridad_id'],
-                'comprado' => 'f'
+                'comprado' => 'pendiente de comprar'
             ]);
 
             $crear = $producto->crear();
@@ -240,16 +240,14 @@ class ProductoController extends ActiveRecord
         getHeadersApi();
 
         $id = $_POST['id'];
-        $comprado = $_POST['comprado'] === 'true' ? 't' : 'f';
+        $comprado = $_POST['comprado'] === 'true' ? 'comprado' : 'pendiente de comprar';
 
         try {
-            $data = Productos::find($id);
-            $data->sincronizar([
-                'comprado' => $comprado
-            ]);
-            $data->actualizar();
+            $sql = "UPDATE productos SET comprado = ? WHERE id = ?";
+            $stmt = self::$db->prepare($sql);
+            $stmt->execute([$comprado, $id]);
 
-            $mensaje = $comprado === 't' ? 'marcado como comprado' : 'marcado como pendiente';
+            $mensaje = $comprado === 'comprado' ? 'marcado como comprado' : 'marcado como pendiente de comprar';
 
             http_response_code(200);
             echo json_encode([

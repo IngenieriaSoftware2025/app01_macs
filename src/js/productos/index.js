@@ -123,9 +123,7 @@ const BuscarProductos = async () => {
             const mostrarComprados = CheckMostrarComprados?.checked || false;
             if (!mostrarComprados) {
                 productosAplanados = productosAplanados.filter(producto => 
-                    producto.comprado === 'f' || 
-                    producto.comprado === false || 
-                    producto.comprado === 'false'
+                    producto.comprado === 'pendiente de comprar'
                 );
             }
             
@@ -159,7 +157,7 @@ const datatable = new DataTable('#TableProductos', {
         dataSrc: 'categoria_nombre',
         className: 'table-primary'
     },
-    order: [[4, 'asc'], [6, 'asc']],
+    order: [[5, 'asc'], [4, 'asc'], [6, 'asc']],
     columns: [
         {
             title: 'No.',
@@ -195,9 +193,9 @@ const datatable = new DataTable('#TableProductos', {
             data: 'comprado',
             width: '10%',
             render: (data, type, row) => {
-                return (data === 't' || data === true || data === 'true') ? 
+                return (data === 'comprado') ? 
                     '<span class="badge bg-success">Comprado</span>' : 
-                    '<span class="badge bg-secondary">Pendiente</span>';
+                    '<span class="badge bg-secondary">Pendiente de comprar</span>';
             }
         },
         { 
@@ -217,7 +215,7 @@ const datatable = new DataTable('#TableProductos', {
             searchable: false,
             orderable: false,
             render: (data, type, row, meta) => {
-                if (row.comprado === 't' || row.comprado === true || row.comprado === 'true') {
+                if (row.comprado === 'comprado') {
                     return `
                     <div class='d-flex justify-content-center'>
                         <button class='btn btn-sm btn-primary cambiar-estado mx-1' 

@@ -26,16 +26,6 @@
                     <li class="nav-item">
                         <a class="nav-link" href="/app01_macs/productos">Lista de Compras</a>
                     </li>
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-expanded="false">Categorías</a>
-                        <ul class="dropdown-menu dropdown-menu-end">
-                            <li><a class="dropdown-item" href="/app01_macs/productos?categoria=1">Alimentos</a></li>
-                            <li><a class="dropdown-item" href="/app01_macs/productos?categoria=2">Higiene</a></li>
-                            <li><a class="dropdown-item" href="/app01_macs/productos?categoria=3">Hogar</a></li>
-                            <li><hr class="dropdown-divider"></li>
-                            <li><a class="dropdown-item" href="/app01_macs/productos?comprados=1">Ver Comprados</a></li>
-                        </ul>
-                    </li>
                 </ul>
             </div>
         </div>
