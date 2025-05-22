@@ -94,7 +94,6 @@ const GuardarProducto = async (event) => {
 }
 
 const BuscarProductos = async () => {
-    console.log("Buscando productos...");
     const url = '/app01_macs/productos/buscarAPI';
     const config = {
         method: 'GET'
@@ -103,13 +102,11 @@ const BuscarProductos = async () => {
     try {
         const respuesta = await fetch(url, config);
         const datos = await respuesta.json();
-        console.log("Datos de productos recibidos:", datos);
         const { codigo, mensaje, data } = datos;
 
         if (codigo == 1) {
             let productosAplanados = [];
             
-            // Verificar si data existe y es un array antes de hacer forEach
             if (data && Array.isArray(data)) {
                 data.forEach(item => {
                     const { categoria, productos } = item;
@@ -125,21 +122,24 @@ const BuscarProductos = async () => {
 
             const mostrarComprados = CheckMostrarComprados?.checked || false;
             if (!mostrarComprados) {
-                productosAplanados = productosAplanados.filter(producto => producto.comprado === 'f');
+                productosAplanados = productosAplanados.filter(producto => 
+                    producto.comprado === 'f' || 
+                    producto.comprado === false || 
+                    producto.comprado === 'false'
+                );
             }
             
-            console.log("Productos procesados para la tabla:", productosAplanados);
             datatable.clear().draw();
             datatable.rows.add(productosAplanados).draw();
         } else {
-            console.log("No se encontraron productos o hubo un error en la respuesta");
-            datatable.clear().draw(); // Limpiar la tabla si no hay datos
+            datatable.clear().draw(); 
         }
     } catch (error) {
         console.error("Error al buscar productos:", error);
-        datatable.clear().draw(); // Limpiar la tabla en caso de error
+        datatable.clear().draw(); 
     }
 }
+
 const datatable = new DataTable('#TableProductos', {
     dom: `
         <"row mt-3 justify-content-between" 
@@ -195,7 +195,7 @@ const datatable = new DataTable('#TableProductos', {
             data: 'comprado',
             width: '10%',
             render: (data, type, row) => {
-                return data === 't' ? 
+                return (data === 't' || data === true || data === 'true') ? 
                     '<span class="badge bg-success">Comprado</span>' : 
                     '<span class="badge bg-secondary">Pendiente</span>';
             }
@@ -217,7 +217,7 @@ const datatable = new DataTable('#TableProductos', {
             searchable: false,
             orderable: false,
             render: (data, type, row, meta) => {
-                if (row.comprado === 't') {
+                if (row.comprado === 't' || row.comprado === true || row.comprado === 'true') {
                     return `
                     <div class='d-flex justify-content-center'>
                         <button class='btn btn-sm btn-primary cambiar-estado mx-1' 

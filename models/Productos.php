@@ -11,8 +11,7 @@ class Productos extends ActiveRecord {
         'cantidad',
         'categoria_id',
         'prioridad_id',
-        'comprado',
-        'fecha_creacion'
+        'comprado'
     ];
 
     public static $idTabla = 'id';

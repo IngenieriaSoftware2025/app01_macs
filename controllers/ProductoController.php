@@ -117,6 +117,10 @@ class ProductoController extends ActiveRecord
                 
                 $productos = self::fetchArray($sql_productos);
                 
+                if (!$productos) {
+                    $productos = [];
+                }
+                
                 $productos_por_categoria[] = [
                     'categoria' => $categoria,
                     'productos' => $productos
@@ -200,14 +204,21 @@ class ProductoController extends ActiveRecord
                 return;
             }
 
-            $producto = Productos::find($id);
-            $producto->sincronizar([
-                'nombre' => $_POST['nombre'],
-                'cantidad' => $_POST['cantidad'],
-                'categoria_id' => $_POST['categoria_id'],
-                'prioridad_id' => $_POST['prioridad_id']
+            $sql = "UPDATE productos SET 
+                    nombre = ?, 
+                    cantidad = ?, 
+                    categoria_id = ?, 
+                    prioridad_id = ? 
+                    WHERE id = ?";
+
+            $stmt = self::$db->prepare($sql);
+            $stmt->execute([
+                $_POST['nombre'],
+                $_POST['cantidad'], 
+                $_POST['categoria_id'],
+                $_POST['prioridad_id'],
+                $id
             ]);
-            $producto->actualizar();
 
             http_response_code(200);
             echo json_encode([
@@ -232,11 +243,11 @@ class ProductoController extends ActiveRecord
         $comprado = $_POST['comprado'] === 'true' ? 't' : 'f';
 
         try {
-            $producto = Productos::find($id);
-            $producto->sincronizar([
+            $data = Productos::find($id);
+            $data->sincronizar([
                 'comprado' => $comprado
             ]);
-            $producto->actualizar();
+            $data->actualizar();
 
             $mensaje = $comprado === 't' ? 'marcado como comprado' : 'marcado como pendiente';
 
