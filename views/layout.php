@@ -12,21 +12,26 @@
 </head>
 
 <body class="bg-light d-flex flex-column min-vh-100">
-    <nav class="navbar navbar-expand-lg navbar-dark bg-primary shadow-sm">
+    <nav class="navbar navbar-dark bg-primary navbar-expand-lg shadow-sm py-3">
         <div class="container">
-            <a class="navbar-brand fw-bold" href="/app01_macs/">
-                <img src="<?= asset('images/cit.png') ?>" alt="Logo" width="32" height="32" class="me-2">
-                INICIO
+            <a class="navbar-brand fw-bold d-flex align-items-center" href="/app01_macs/">
+                <i class="bi bi-cpu me-2"></i> App01_MACS
             </a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown">
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
-            <div class="collapse navbar-collapse" id="navbarNavDropdown">
-                <ul class="navbar-nav ms-auto">
-                    <li class="nav-item">
-                        <a class="nav-link" href="/app01_macs/productos">Lista de Compras</a>
-                    </li>
-                </ul>
+            <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+                <div class="navbar-nav ms-auto mb-2 mb-lg-0"></div>
+                    <a class="nav-link text-white fw-semibold" href="/app01_macs/productos">
+                        <i class="bi bi-bag-check me-1"></i>Lista de Compras
+                    </a>
+                </div>
+                <form class="d-flex ms-lg-3 mt-3 mt-lg-0" role="search" method="GET" action="/app01_macs/productos">
+                    <input class="form-control me-2" type="search" placeholder="Buscar..." aria-label="Buscar" name="buscar">
+                    <button class="btn btn-outline-light" type="submit">
+                        <i class="bi bi-search"></i>
+                    </button>
+                </form>
             </div>
         </div>
     </nav>
